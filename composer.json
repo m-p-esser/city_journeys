@@ -1,0 +1,16 @@
+{
+    "name": "messer/city_journeys",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Messer\\CityJourneys\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marc-Philipp Esser",
+            "email": "m-esser@mail.de"
+        }
+    ],
+    "require": {}
+}
