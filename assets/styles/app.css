@@ -1,0 +1,311 @@
+/* || Colors */
+:root {
+    --primary-color: rgba(45, 49, 66, 1);
+    --secondary-color: rgba(79, 93, 117, 1);
+    --hint-color: rgb(112, 112, 112, 1);
+    --inactive-color: rgba(204, 204, 204, 1);
+    --highlight-color: rgba(34, 96, 255, 1);
+}
+
+/* || Typography */
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* || General UI Elements */
+button {
+    color: white;
+    background-color: var(--highlight-color);
+    border-width: 0;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.btn-close {
+    /* transform: translate(10px, -20px); */
+    /* display: flex; */
+    position: absolute;
+    left: 85%;
+    top: 12%;
+    padding: 7px 10px;
+    background: var(--inactive-color);
+    color: var(--primary-color);
+    border-radius: 50%;
+    border-color: white
+}
+
+/* input[type=checkbox] {
+    visibility: hidden;
+} */
+
+/* Body ----------------------------------------------------------------------*/
+
+/* || Header & Main navigation */
+.navbar {
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.navbar-link>ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    gap: 20px;
+}
+
+/* || Sorting Criteria menu */
+.sorting-menu {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+/* || Filter menu */
+.filter-menu {
+    margin-left: 20px;
+}
+
+/* || Main content */
+.city-grid {
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 20px 0 0 20px;
+}
+
+/* Text Elements */
+/* .filter-title {
+    margin: 20px 0 0 0;
+}
+
+.filter-hint {
+    color: var(--hint-color);
+} */
+
+/* Buttons */
+/* .filter-button {
+    margin-top: 20px;
+    font-size: 24px;
+} */
+
+/* .multi-select-button {
+    color: var(--hint-color);
+    border-color: var(--hint-color);
+} */
+
+/* || Cards */
+.card {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.card-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 32px;
+    text-shadow: 2px 2px 2px black;
+}
+
+.card-image {
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    display: block;
+}
+
+/* Other */
+/* .multi-select {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 20px;
+    margin-top: 20px;
+    justify-content: stretch
+} */
+
+/* .filter-options {
+    margin: 0 40px;
+} */
+
+/* Checkboxes */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    user-select: none;
+
+    &>* {
+        margin: .5rem 0.5rem;
+    }
+}
+
+.checkbox-group-legend {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #9c9c9c;
+    text-align: center;
+    line-height: 1.125;
+    margin-bottom: 1.25rem;
+}
+
+.checkbox-input {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+
+    &:checked+.checkbox-tile {
+        border-color: var(--highlight-color);
+        box-shadow: 0 5px 10px rgba(#000, 0.1);
+        color: var(--highlight-color);
+
+        &:before {
+            transform: scale(1);
+            opacity: 1;
+            background-color: var(--highlight-color);
+            border-color: var(--highlight-color);
+        }
+
+        .checkbox-icon,
+        .checkbox-label {
+            color: var(--highlight-color);
+        }
+    }
+
+    &:focus+.checkbox-tile {
+        border-color: var(--highlight-color);
+        box-shadow: 0 5px 10px rgba(#000, 0.1), 0 0 0 4px #b5c9fc;
+
+        &:before {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+}
+
+.checkbox-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 7rem;
+    min-height: 7rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid #b5bfd9;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(#000, 0.1);
+    transition: 0.15s ease;
+    cursor: pointer;
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 2px solid #b5bfd9;
+        background-color: #fff;
+        border-radius: 50%;
+        top: 0.25rem;
+        left: 0.25rem;
+        opacity: 0;
+        transform: scale(0);
+        transition: 0.25s ease;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+        background-size: 12px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+
+    &:hover {
+        border-color: var(--highlight-color);
+
+        &:before {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+}
+
+.checkbox-icon {
+    transition: .375s ease;
+    color: #494949;
+
+    svg {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+.checkbox-label {
+    color: #707070;
+    transition: .375s ease;
+    text-align: center;
+}
+
+/* || Modal */
+.modal {
+    /* width: 450px; */
+    padding: 1.3rem;
+    min-height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-width: 0;
+    border-radius: 15px;
+    z-index: 2;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+.modal .btn-submit {
+    background-color: var(--highlight-color);
+}
+
+/* Footer --------------------------------------------------------------------*/
+.footer {
+    background-color: aquamarine;
+    display: flex;
+    padding: 20px;
+    justify-content: stretch;
+}
+
+/* Misc ----------------------------------------------------------------------*/
+.hidden {
+    display: none;
+}
