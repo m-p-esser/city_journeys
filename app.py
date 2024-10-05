@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from dotenv import find_dotenv, load_dotenv
 from src.db import Database
-from src.framework.router import Router
+from router import Router
 
 template_dir = pathlib.Path.cwd() / "public"
 static_dir = pathlib.Path.cwd() / "assets"
