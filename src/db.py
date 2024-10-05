@@ -2,7 +2,7 @@ from mysql.connector import connect
 from typing import Literal
 
 
-class Database:
+class DatabaseClient:
 
     allowed_dialects = ["MySQL", "PostgreSQL", "SQLite"]
 

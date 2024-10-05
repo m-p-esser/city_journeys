@@ -4,7 +4,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from dotenv import find_dotenv, load_dotenv
-from src.db import Database
+from src.db import DatabaseClient
 from router import Router
 
 template_dir = pathlib.Path.cwd() / "public"
@@ -21,7 +21,7 @@ app = Flask(
 )
 
 # Init Database
-db = Database(
+db = DatabaseClient(
     host=env_vars["HOST_NAME"],
     port=env_vars["PORT"],
     database=env_vars["DATABASE"],
