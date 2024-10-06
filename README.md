@@ -4,7 +4,7 @@
 
 ```
 .
-├── config                  -> 
+├── config                  -> Config classes for Database, Static File CDN etc.
 ├── migrations              -> Database migrations
 │   └── versions
 ├── public                  -> HTML files used for serving the webpage
@@ -28,13 +28,29 @@
 ```
 
 ## Features
-- LP: Cities Gallery
+- LP: City Gallery
+    - Interactive Filter for City Gallery 
+- City Page
+    - Facts
+    - Accomidations
+    - Flights 
+    - Sights
+    - Rating
 - Login and User Authenitification
 
-
 ## To-Do
-- LP: Cities Gallery
-    - [ ] Create a Database model(s)
-    - [ ] Load data into Database table(s)
-    - [ ] Create a View to display images and city information
+- LP: City Gallery
+    - [x] Create a Database model(s)
+    - [x] Load data into Database table(s)
+    - [x] Create a View to display images and city information
+- Interactive Filter for City Gallery
+    - [ ] Create REST API using FastAPI
+    - [ ] Use REST API to construct CDN URL
+- Optimize City Gallery
+    - [ ] Load smaller images from CDN
+    - [ ] Implement "infinite scroll"
+- Create City Page
+    - [ ] Create basic layout
 
+- Webserver Security
+    - [ ] HTTPs certificate
