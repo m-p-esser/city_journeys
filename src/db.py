@@ -1,5 +1,4 @@
 from typing import Literal
-import csv
 from mysql.connector import connect
 import pandas as pd
 from sqlalchemy import create_engine
@@ -34,7 +33,7 @@ class DatabaseClient:
             connection_uri = f"{dialect_driver}://{db_config.DB_USER_NAME}:{db_config.DB_USER_PASSWORD}@{db_config.DB_HOST_IP}/{db_config.DB_NAME}"
             return connection_uri
 
-        if dialect == "SQLite":
+        if dialect in ["SQLite", "PostgreSQL"]:
             raise NotImplementedError
 
     def create_engine(self, dialect: Literal["MySQL", "PostgreSQL", "SQLite"]):
@@ -53,12 +52,7 @@ class DatabaseClient:
     def close_connection(self):
         self.conn.close()
 
-    def create_database(self, database):
-        self.open_connection()
-        self.run_query(f"CREATE DATABASE IF NOT EXISTS {database}")
-        self.close_connection()
-
-    def run_query(self, query_string):
+    def create_query(self, query_string):
         self.open_connection()
         result = self.conn.cmd_query(query_string)
         self.close_connection()
@@ -69,7 +63,22 @@ class DatabaseClient:
         cur = self.conn.cursor(dictionary=True)
         cur.execute(query_string)
         results = cur.fetchall()
+        self.close_connection()
         return results
+
+    def get_city(self, city_id: int, database: str = "db_prod"):
+        self.open_connection()
+        sql = f"SELECT * FROM {database}.cities WHERE id = {city_id}"
+        city = self.read_query(sql)[0]
+        self.close_connection()
+        return city
+
+    def get_cities(self, skip: int = 0, limit: int = 100, database: str = "db_prod"):
+        self.open_connection()
+        sql = f"SELECT * FROM {database}.cities LIMIT {limit} OFFSET {skip}"
+        cities = self.read_query(sql)
+        self.close_connection()
+        return cities
 
     def insert_from_csv(self, file_name, table_name, database, chunk_size):
         file_type = file_name.split(".")[-1]
@@ -87,7 +96,9 @@ class DatabaseClient:
             name=table_name,
             con=engine,
             schema=database,
-            if_exists='append',
+            if_exists="append",
             chunksize=chunk_size,
-            index=False
+            index=False,
         )
+
+db_client = DatabaseClient()

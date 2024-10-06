@@ -2,7 +2,7 @@ import pathlib
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from src.db import DatabaseClient
+from src.db import db_client
 from src.router import Router
 
 template_dir = pathlib.Path.cwd() / "public"
@@ -16,8 +16,8 @@ app = Flask(
 )
 
 # Init Database
-db_client = DatabaseClient()
-db_client.create_database(db_client.config.DB_NAME)
+sql = f"CREATE DATABASE IF NOT EXISTS {db_client.config.DB_NAME}"
+db_client.create_query(sql)
 
 connection_uri = db_client.create_connection_uri("MySQL")
 app.config.from_mapping({"SQLALCHEMY_DATABASE_URI": connection_uri})
@@ -29,6 +29,7 @@ migrate = Migrate(app, db)
 # Start App on Landing page
 Router.run(app)
 
+# forces table creation
 from src import models
 
 
