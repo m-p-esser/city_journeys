@@ -41,8 +41,7 @@
                             <input type="checkbox" class="checkbox-input" />
                             <span class="checkbox-tile">
                                 <span class="checkbox-icon">
-                                    <img src="static/icons/filter_icons/european-union.svg" width="40"
-                                        height="auto">
+                                    <img src="static/icons/filter_icons/european-union.svg" width="40" height="auto">
                                 </span>
                                 <span class="checkbox-label">Europe</span>
                             </span>
@@ -53,8 +52,7 @@
                             <input type="checkbox" class="checkbox-input" />
                             <span class="checkbox-tile">
                                 <span class="checkbox-icon">
-                                    <img src="static/icons/filter_icons/south-america.svg" width="40"
-                                        height="auto">
+                                    <img src="static/icons/filter_icons/south-america.svg" width="40" height="auto">
                                 </span>
                                 <span class="checkbox-label">South America</span>
                             </span>
@@ -88,7 +86,9 @@
             </form>
         </div>
 
-        {% include 'cities.html' %}
+        {{ cities }}
+
+        {% include 'views/cities.html' %}
 
         <script>
             const modal = document.querySelector(".modal");
