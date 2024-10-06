@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from typing import Annotated
+from fastapi import FastAPI, Query
 from fastapi import HTTPException
 import schemas
 from db import db_client
@@ -7,13 +8,13 @@ app = FastAPI()
 
 
 @app.get("/cities", response_model=list[schemas.City])
-def get_users():
+def get_cities():
     cities = db_client.get_cities()
     return cities
 
 
 @app.get("/cities/{city_id}", response_model=schemas.City)
-def get_user(city_id: int):
+def get_city(city_id: int):
     city = db_client.get_city(city_id=city_id)
     if city is None:
         raise HTTPException(
@@ -23,13 +24,13 @@ def get_user(city_id: int):
 
 
 @app.get("/countries", response_model=list[schemas.Country])
-def get_users():
+def get_countries():
     countries = db_client.get_countries()
     return countries
 
 
 @app.get("/countries/{country_id}", response_model=schemas.City)
-def get_user(country_id: int):
+def get_country(country_id: int):
     country = db_client.get_coutry(country_id=country_id)
     if country is None:
         raise HTTPException(
