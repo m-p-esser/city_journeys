@@ -5,15 +5,18 @@
 ```
 .
 ├── config                  -> Config classes for Database, Static File CDN etc.
-├── migrations              -> Database migrations
+├── migrations              -> Alembic Database migrations
 │   └── versions
 ├── public                  -> HTML files used for serving the webpage
+│   └── views               -> Interfaces which present information to the user 
 ├── src                     -> Source files
 │   ├── controller          -> Classes which link Views and Models
 │   ├── routes              -> URL routes
-│   ├── views               -> Interfaces which present information to the user
 │   ├── db.py               -> Classes to interact with Databases
 │   ├── models.py           -> Database models (e.g. Cities, Countries)
+│   ├── schema.py           -> Pydantic models (for data validation of API endpoints)
+│   ├── api.py              -> REST API endpoints build using fastAPI
+│   ├── utils.py            -> Utility functions that don't fit anywhere else
 │   └── router.py           -> Collecting all routes from `routes` folder
 └── static                  -> Static ressources used for serving the webpage
     ├── icons
@@ -44,7 +47,7 @@
     - [x] Load data into Database table(s)
     - [x] Create a View to display images and city information
 - Interactive Filter for City Gallery
-    - [ ] Create REST API using FastAPI
+    - [x] Create REST API using FastAPI
     - [ ] Use REST API to construct CDN URL
 - Optimize City Gallery
     - [ ] Load smaller images from CDN
