@@ -7,7 +7,7 @@
             <span>{{ city.city_name}}</span>
             <span>{{ city.country_emoji }}</span>
         </div>
-        <a href="/city.php"><img class="card-image" src="static/images/cities/berlin.jpg" alt="Berlin"></a>
+        <a href="/city.php"><img class="card-image" src="{{ city.cdn_url }}"" alt="{{ city.city_name }}"></a>
     </div>
     {% endfor %}
 </div>
