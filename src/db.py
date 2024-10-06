@@ -73,9 +73,14 @@ class DatabaseClient:
         self.close_connection()
         return city
 
-    def get_cities(self, skip: int = 0, limit: int = 100, database: str = "db_prod"):
+    def get_cities(self, skip: int = 0, limit: int = 30, database: str = "db_prod"):
         self.open_connection()
-        sql = f"SELECT * FROM {database}.cities LIMIT {limit} OFFSET {skip}"
+        sql = f"""
+            SELECT * FROM {database}.cities 
+            WHERE population > 100000 
+            ORDER BY population DESC 
+            LIMIT {limit} 
+            OFFSET {skip}"""
         cities = self.read_query(sql)
         self.close_connection()
         return cities
@@ -85,9 +90,14 @@ class DatabaseClient:
         sql = f"SELECT * FROM {database}.countries WHERE id = {country_id}"
         country = self.read_query(sql)[0]
         self.close_connection()
-        return country 
+        return country
 
-    def get_countries(self, skip: int = 0, limit: int = 100, database: str = "db_prod"):
+    def get_countries(
+        self,
+        skip: int = 0,
+        limit: int = 1000,
+        database: str = "db_prod",
+    ):
         self.open_connection()
         sql = f"SELECT * FROM {database}.countries LIMIT {limit} OFFSET {skip}"
         countries = self.read_query(sql)
@@ -114,5 +124,6 @@ class DatabaseClient:
             chunksize=chunk_size,
             index=False,
         )
+
 
 db_client = DatabaseClient()
