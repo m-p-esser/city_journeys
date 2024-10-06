@@ -80,6 +80,20 @@ class DatabaseClient:
         self.close_connection()
         return cities
 
+    def get_coutry(self, country_id: int, database: str = "db_prod"):
+        self.open_connection()
+        sql = f"SELECT * FROM {database}.countries WHERE id = {country_id}"
+        country = self.read_query(sql)[0]
+        self.close_connection()
+        return country 
+
+    def get_countries(self, skip: int = 0, limit: int = 100, database: str = "db_prod"):
+        self.open_connection()
+        sql = f"SELECT * FROM {database}.countries LIMIT {limit} OFFSET {skip}"
+        countries = self.read_query(sql)
+        self.close_connection()
+        return countries
+
     def insert_from_csv(self, file_name, table_name, database, chunk_size):
         file_type = file_name.split(".")[-1]
 
