@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 
-<!-- Only process data here, don't query it -> violates MVC -->
-
-{% for i in range(11) %}
-<p>Hello, world</p>
-{% endfor %}
+<div class="city-grid">
+    {% for city in cities %}
+    <div class="card">
+        <div class="card-title">
+            <span>{{ city.city_name}}</span>
+            <span>{{ city.country_emoji }}</span>
+        </div>
+        <a href="/city.php"><img class="card-image" src="static/images/cities/berlin.jpg" alt="Berlin"></a>
+    </div>
+    {% endfor %}
+</div>
 
 </html>
