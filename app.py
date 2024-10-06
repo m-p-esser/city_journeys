@@ -6,7 +6,7 @@ from src.db import DatabaseClient
 from src.router import Router
 
 template_dir = pathlib.Path.cwd() / "public"
-static_dir = pathlib.Path.cwd() / "assets"
+static_dir = pathlib.Path.cwd() / "static"
 
 # Start the app
 app = Flask(
