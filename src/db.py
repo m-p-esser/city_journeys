@@ -64,6 +64,13 @@ class DatabaseClient:
         self.close_connection()
         return result
 
+    def read_query(self, query_string):
+        self.open_connection()
+        cur = self.conn.cursor(dictionary=True)
+        cur.execute(query_string)
+        results = cur.fetchall()
+        return results
+
     def insert_from_csv(self, file_name, table_name, database, chunk_size):
         file_type = file_name.split(".")[-1]
 
@@ -84,23 +91,3 @@ class DatabaseClient:
             chunksize=chunk_size,
             index=False
         )
-
-        # self.open_connection()
-
-        # cur = self.conn.cursor()
-        # with open(csv_file_path) as fp:
-        #     reader = csv.reader(fp, delimiter=",")
-        #     for idx, row in enumerate(reader):
-        #         if idx == 0:
-        #             header_columns = row
-        #             value_placeholders = ",".join(["%s"] * len(header_columns))
-        #             # print(value_placeholders)
-        #             header_columns = ",".join(header_columns)
-        #         if idx > 0 & idx < 10:
-        #             # row = ",".join(f"'{c}'" for c in row)
-        #             sql = f"INSERT INTO {database}.{table_name} ({header_columns}) VALUES ({value_placeholders})"
-        #             cur.execute(sql, row)
-        #             # self.run_query(sql)
-        # cur.close()
-
-        # self.close_connection()
